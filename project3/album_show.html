@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>展示相册图片展示</title>
+</head>
+<body>
+    <?php if($prev):?>
+        <a href="?path=<?php echo $path.'/'.basename($prev)?>">
+        <img src="<?php echo $prev;?>" alt="上一张" /></a>
+    <?php endif;?>
+    <img src="<?php echo $current;?>" alt="当前图片" />
+    <?php if($next):?>
+        <a href="?path=<?php echo $path.'/'.basename($next);?>">
+        <img src="<?php echo $next;?>" alt="下一张" /></a>
+    <?php endif;?>
+    <hr/>
+    <h2>显示浏览历史图片<a href="?path=<?php echo $path.'/'.basename($current);?>&action=clear">清除历史</a></h2>
+
+    <?php foreach($history as $v):?>
+        <a href="?path=<?php echo substr($v,$album_path_len);?>">
+            <img src="<?php echo $v;?>" alt="浏览历史图片" />
+        </a>
+    <?php endforeach;?>
+</body>
+</html>

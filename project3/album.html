@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户相册</title>
+</head>
+<body>
+    <form method="post">
+        添加子相册：<input type="text" name="dir_name" />
+        <input type="submit" value="创建" />
+    </form>
+    <form method="post" enctype="multipart/form-data">
+        上传图片：<input type="file" name="file_name" />
+        <input type="submit" value="上传" />
+    </form>
+    当前位置：<a href="album.php">用户相册</a><?php echo $path;?>
+    <?php foreach($folderlist as $v):?>
+        <a href="?path=<?php echo $v;?>"><?php echo basename($v);?></a>
+    <?php endforeach;?>
+    <?php foreach($filelist as $v):$filename=basename($v);?>
+        <a href="album_show.php?path=<?php echo "$path/$filename";?>">
+        <img src ="<?php echo $v;?>" alt=""/><?php echo $filename;?></a>
+    <?php endforeach;?>
+</body>
+</html>

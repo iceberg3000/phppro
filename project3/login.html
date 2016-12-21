@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+</head>
+<body>
+    <form method="post">
+        用户名：<input type="text" name="username" /><br/>
+        密码：<input type="password" name="password" /><br/>
+        验证码：<input type="text" name="captcha" /><br/>
+        <img src="./code.php" id="captcha" /><a href="#" id="change">看不清，换一张</a><br/>
+        <input type="submit" value="登录" />
+        <script>
+            var img = document.getElementById("captcha");
+            var change = document.getElementById("change");
+            change.onclick = function(){
+                img.src = './code.php?rand=' + Math.random();
+                return false;
+            }
+        </script>
+    </form>
+</body>
+</html>

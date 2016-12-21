@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>信息修改</title>
+</head>
+<body>
+    <form method="POST">
+        姓名：<input name="name" type="text" value="<?php echo $user_data['name'];?>" />
+        性别：<input type="radio" name="gender" value="男" <?php if($user_data['gender'] == '男') echo 'checked';?> />男
+              <input type="radio" name="gender" value="女" <?php if($user_data['gender'] == '女') echo 'checked';?> />女<br/>
+        血型：<select name="blood">
+              <?php foreach($blood as $v):?>
+                <option value="<?php echo $v;?>" <?php if($user_data['blood'] == $v){echo 'selected';}?>><?php echo $v;?></option>
+              <?php endforeach;?> <br/>
+        爱好：<?php foreach($hobby as $v):?>
+              <input type="checkbox" name="hobby[]" <?php if(in_array($v,$user_data['hobby'])){echo 'checked';}?> value="<?php echo $v;?>" /> <?php echo $v;?>
+              <?php endforeach;?> <br/>
+        个人简介：<textarea name="description">
+                 <?php echo $user_data['description'];?>
+                 </textarea> <br/>
+        <input type="reset" value="重置" /><input type="submit" value="保存" />
+    </form>
+</body>
+</html>

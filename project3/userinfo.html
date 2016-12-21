@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息表单</title>
+</head>
+<body>
+    <a href="logout.php">退出登录</a>
+    <form method="post">
+        姓名：<input name="name" type="text" /><br/>
+        性别：<input type="radio" name="gender" value="男" />男
+              <input type="radio" name="gender" value="女" />女<br/>
+        血型：<select name="blood">
+                <?php foreach($blood as $v): ?>
+                <option value="<?php echo $v; ?>"><?php echo $v; ?></option>
+                <?php endforeach; ?>
+             </select><br/>
+        爱好：<?php foreach($hobby as $v):?>
+                <input type="checkbox" name="hobby[]" value="<?php echo $v;?>" />
+                <?php echo $v;?>
+             <?php endforeach;?>
+             <br/>
+        个人简介：<textarea name="description"></textarea><br/>
+        <input type="reset" value="重置" />
+        <input type="submit" value="保存" />
+    </form>
+</body>
+</html>
