@@ -18,3 +18,6 @@ $e3->age = 50;
 $e3->introduce();
 
 $e4 = new Employee;
+$e4->name = '赵六';
+$e4->age = 45;
+$e4->introduce();
