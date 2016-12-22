@@ -11,3 +11,8 @@ $e2 = new Employee;
 $e2->name = '李四';
 $e2->age = 30;
 $e2->introduce();
+
+$e3 = new Employee;
+$e3->name = '王五';
+$e3->age = 50;
+$e3->introduce();
