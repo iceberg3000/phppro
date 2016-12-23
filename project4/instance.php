@@ -27,7 +27,7 @@ $e1->_age=24;
 
 $e2 = new ManageEmployee();
 $e2->_name='leader';
-$e2->_age=38;
+$e2->_age=39;
 
 $e1->introduce();
 $e2->introduce();
