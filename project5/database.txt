@@ -1,0 +1,38 @@
+vscode：visual studio code 调试php 
+http://blog.csdn.net/x356982611/article/details/52664334
+
+教你用Visual Studio Code做PHP开发 - 微软官方工具，IDE中的黑马 ! 
+http://bbs.wfun.com/thread-902655-1-1.html
+
+
+mysql -u root -p
+
+set names gbk;
+
+show databases;
+
+create table `itcase`;
+
+use `itcast`;
+
+create database `project5`;
+
+use `project5`;
+
+create table `news`(
+`id` int unsigned auto_increment primary key comment '新闻编号',
+`title` varchar(60) not null comment '新闻标题',
+`content` text not null comment '新闻内容',
+`addtime` timestamp default current_timestamp not null comment '发布时间'
+)charset=utf8;
+
+insert into `news` (`title`,`content`,`addtime`) values
+('新闻标题1','新闻内容1','2016-11-07 17:07:57'),
+('新闻标题2','新闻内容2','2016-11-08 17:07:58'),
+('新闻标题3','新闻内容4','2016-11-09 17:07:59');
+
+select * from `news`\G;
+
+desc `news`;
+
+show create table `news` \G;
