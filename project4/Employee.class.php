@@ -28,4 +28,14 @@ class Employee{
         list($name,$sales) = $f_args;
         $this-$f_name($name,$sales);
     }
+
+
+    public function add(){
+        $info = isset($_POST['data']) ? $_POST['data'] : '';
+        if(empty($info)){
+            throw new Exception("员工信息不能为空，添加失败！");
+        }else{
+            echo "添加员工成功。";
+        }
+    }
 }

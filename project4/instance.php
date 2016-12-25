@@ -1,8 +1,12 @@
 <?php
 header('Content-type:text/html;charset=utf-8');
-require 'employee.class.php';
-require 'NormalEmployee.class.php';
-require 'ManageEmployee.class.php';
+// require 'employee.class.php';
+// require 'NormalEmployee.class.php';
+// require 'ManageEmployee.class.php';
+
+function __autoload($className){
+    require $className.'.class.php';
+}
 
 // $e1 = new Employee;
 // $e1->name = '张三';
