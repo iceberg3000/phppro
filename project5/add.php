@@ -1,8 +1,8 @@
 <?php
 
 if($_POST){
-    var_dump($_POST);
-    exit;
+    // var_dump($_POST);
+    // exit;
     $data = array();
     $fields = array('title','content');
     foreach($fields as $v){

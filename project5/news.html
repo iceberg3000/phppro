@@ -1,3 +1,4 @@
+<a href="add.php">添加新闻</a>
 <table>
     <tr>
         <td>新闻标题</td>
@@ -6,9 +7,13 @@
     </tr>
     <?php foreach($data as $v):?>
     <tr>
-        <td><?php echo $v['title'];?></td>
+        <td><a href="./show.php?id=<?php echo $v['id'];?>"><?php echo $v['title'];?></a><td>
         <td><?php echo $v['addtime'];?></td>
-        <td>编辑 删除</td>
+        <td>
+            <a href="edit.php?id=<?php echo $v['id'];?>">编辑</a> |
+            <a href="del.php?id=<?php echo $v['id'];?>" onclick="return confirm('确定要删除该新闻吗？');">删除</a>
+         </td>
     </tr>
     <?php endforeach;?>
 </table>
+<div><?php echo $page_html?></div>
