@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery测试</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            var text2 = $(".main").text();
+            console.log(text2);
+        });
+    </script>
+</head>
+<body>
+    <div class="top">页面头部</div>
+    <div class="main">页面中部</div>
+    <div class="footer">页面尾部</div>
+    <button id="button">单击测试</button>
+    <script>
+        $(".top").text("欢迎来访");
+        $(".main").text("大家好，我叫小明，正在学习jQuery.");
+        $(".footer").html("<i>这是我的个人主页</i>");
+        $(".top").css("text-align","center");
+        $(".main").css("font-weight","bold");
+        $(".footer").css("background","#ccc");
+
+        $("#button").click(function(){
+            alert("按钮标题为："+$(this).text());
+        });
+    </script>
+</body>
+</html>

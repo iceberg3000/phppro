@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个性相册</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(".act-add").click(function(){
+                //alert('ok');
+                var imageUrl = $(".act input[name=url]").val();
+                var imageBorder = $(".act input[name=border]:checked").val();
+                var $img = $("<img />").attr("src",imageUrl);
+                $img.css("border-radius",imageBorder);
+                //创建容器
+                var $imgBox = $('<div class="imgbox"></div>');
+                var $moveUp = $('<button>上移</button>');
+                var $moveDown = $('<button>下移</button>');
+                var $remove = $('<button>移除</button>');
+                $moveUp.click(function(){
+                    $imgBox.prev().before($imgBox);
+                });
+                $moveDown.click(function(){
+                    $imgBox.next().after($imgBox);
+                });
+                $remove.click(function(){
+                    $imgBox.remove();
+                });
+                $imgBox.append($img,$moveUp,$moveDown,$remove);
+                $(".list").append($imgBox);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="album">
+        <div class="act">
+            输入图片URL:<input type="text" name="url" /><br/>
+            选择相框类型：<input type="radio" id="r1" name="border" value="0" checked />
+            <label for="r1">直角</label>
+            <input type="radio" id="r2" name="border" value="20px" />
+            <label for="r2">圆角</label>
+            <input type="radio" id="r3" name="border" value="75px" />
+            <label for="r3">圆形</label>
+            <br/>
+            <button class="act-add">添加</button>
+        </div>
+        <div class="list"></div>
+    </div>
+</body>
+</html>
