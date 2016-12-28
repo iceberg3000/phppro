@@ -1,0 +1,24 @@
+body{margin:0;padding:0;color:#333;font-family:'Microsoft YaHei';}
+body{background:url(../images/bg.jpg) no-repeat fixed left top;}
+img{border:0;}
+a{text-decoration:none;color:#333;}
+a:hover{text-decoration:underline;}
+.box{width:920px;margin:0 auto;}
+.header{background:#fff;box-shadow:0 1px 1px rgba(0,0,0,0.15);}
+.header-info{border-bottom:1px solid #f2f2f5;margin-top:120px;}
+.header-avatar{padding:2px;background:#fff;float:left;font-size:0;box-shadow:0 2px 4px rgba(0,0,0,0.3);position:relative;top:-60px;left:20px;}
+.header-avatar img{width:120px;height:120px;}
+.header-wrap{padding:10px 0 10px 160px;}
+.header-user{font-size:22px;}
+.header-opt{background:url(../images/opt.png) no-repeat;height:45px;width:179px;}
+.header-nav{text-indent:20px;}
+.header-nav a{display:inline-block;text-indent:0;text-align:center;vertical-align:bottom;height:40px;line-height:40px;font-size:14px;margin:0 40px;padding:0 6px;border-bottom:2px solid #fff;}
+.header-nav a:hover{text-decoration:none;border-bottom:2px solid #f7691d;transition:all .2s linear;}
+.header-nav a.curr{font-weight:bold;border-bottom:2px solid #f7691d;}
+
+/*瀑布流*/
+.water{margin:0 auto;overflow:hidden;}
+.water-flow{float:left;}
+.water-each{font-size:0;border:10px solid #fff;box-shadow:0px 1px 2px 1px #ddd;margin:6px 3px;}
+.water-each:hover{box-shadow:0px 1px 2px 1px #bbb;}
+.water-flow img{width:100%;}

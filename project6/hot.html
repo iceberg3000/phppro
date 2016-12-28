@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>焦点图</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="./css/hot.css" />
+    <script>
+        $(function(){
+            var height = 382;
+            var speed = 700;
+            var delay = 1500;
+            var now = 0;
+            var max = 4
+            var $picsUl = $(".hot-pics ul");
+            $picsUl.find("li:first").clone().appendTo($picsUl);
+            
+            var timer = setInterval(changeAuto,delay);
+            $(".hot").on({
+                mouseenter:function(){
+                    clearInterval(timer);
+                },
+                mouseleave:function(){
+                    clearInterval(timer);
+                    timer = setInterval(changeAuto,delay);
+                }
+            });
+            function changeAuto(){
+                if(!$picsUl.is(".animated")){
+                    changeBar();
+                    if(now < max){
+                        now +=1;
+                        changeNext();
+                    }else{
+                        now = 0;
+                        changeFirst();
+                    }
+                }
+            }
+
+            function changeNext(){
+                $picsUl.animate({top:-height*now},speed);
+            }
+            function changeFirst(){
+                $picsUl.animate({top:-height*(max+1)},speed,function(){
+                    $(this).css("top",0);
+                });
+            }
+
+            //焦点切按换
+            var $barLi = $(".hot-bar li");
+            $barLi.click(function(){
+                now = $(this).index();
+                changeNext();
+                changeBar();
+            });
+
+            function changeBar(){
+                $barLi.eq(now).addClass("current").siblings().removeClass("current");
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="hot">
+        <div class="hot-pics">
+            <ul>
+                <li><img src="./images/hot_1.jpg" /></li>
+                <li><img src="./images/hot_2.jpg" /></li>
+                <li><img src="./images/hot_3.jpg" /></li>
+                <li><img src="./images/hot_4.jpg" /></li>
+                <li><img src="./images/hot_5.jpg" /></li>
+            </ul>
+        </div>
+        <div class="hot-bar">
+            <ul>
+                <li class="current"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+body{margin:0;padding:0;color:#333;font-family:'Microsoft YaHei';}
+body{background:url(../images/bg.jpg) no-repeat fixed left top;}
+img{border:0;}
+a{text-decoration:none;color:#333;}
+a:hover{text-decoration:underline;}
+.box{width:920px;margin:0 auto;}
+.header{background:#fff;box-shadow:0 1px 1px rgba(0,0,0,0.15);}
+.header-info{border-bottom:1px solid #f2f2f5;margin-top:120px;}
+.header-avatar{padding:2px;background:#fff;float:left;font-size:0;box-shadow:0 2px 4px rgba(0,0,0,0.3);position:relative;top:-60px;left:20px;}
+.header-avatar img{width:120px;height:120px;}
+.header-wrap{padding:10px 0 10px 160px;}
+.header-user{font-size:22px;}
+.header-opt{background:url(../images/opt.png) no-repeat;height:45px;width:179px;}
+.header-nav{text-indent:20px;}
+.header-nav a{display:inline-block;text-indent:0;text-align:center;vertical-align:bottom;height:40px;line-height:40px;font-size:14px;margin:0 40px;padding:0 6px;border-bottom:2px solid #fff;}
+.header-nav a:hover{text-decoration:none;border-bottom:2px solid #f7691d;transition:all .2s linear;}
+.header-nav a.curr{font-weight:bold;border-bottom:2px solid #f7691d;}
+
+/*焦点图切换*/
+
+.hot{width:874px;margin:13px auto 30px auto;background:#fff;border-radius:4px;background:#fff;padding:3px;position:relative;}
+.hot-pics{height:382px;overflow:hidden;position:relative;font-size:0;}
+.hot-pics ul{list-style:none;margin:0;padding:0;position:absolute;top:0;}
+.hot-bar{position:absolute;bottom:2px;height:30px;width:874px;background:rgba(0,0,0,0.3);}
+.hot-bar ul{font-size:0;text-align:center;padding:0;margin:0;margin-top:6px;}
+.hot-bar li{width:14px;height:14px;background:#fff;display:inline-block;margin:0 5px;border-radius:7px;cursor:pointer;}
+.hot-bar li.current{background:#D968C0;}
