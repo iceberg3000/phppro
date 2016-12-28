@@ -4,25 +4,59 @@
     <meta charset="UTF-8">
     <title>瀑布流</title>
     <link rel="stylesheet" href="./css/waterfall.css" />
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="./js/jquery.waterfall.js"></script>
+    <script>
+        $(function(){
+            var imgArr = createImageArr();
+            //console.log(imgArr);
+            $(".water").waterfall({"imgArr":imgArr,"defRowNum":4});
+            $("#layer").click(layer);
+
+        });
+        function createImageArr(){
+            var imgArr = [];
+            for(var i=0;i<100;i++){
+                imgArr[i] = "./waterfall/" + i + ".jpg";
+            }
+            return imgArr;
+        }
+
+        function layer(){
+            var speed = 200; //淡入淡出动画速度
+            var $layer = $(".layer");
+            var $wrap = $layer.find(".layer-wrap");
+            var $close = $layer.find(".layer-close");
+            //以淡入效果显示弹出层
+            $layer.fadeIn(speed);
+            //控制弹出层显示的位置为网页中心
+            $wrap.css("margin-left","-"+($wrap.width()/2)+"px");
+            $wrap.css("margin-top","-"+($wrap.height()/2)+"px");
+            //关闭按钮，以淡出效果隐藏弹出层
+            $close.click(function(){
+                $layer.fadeOut(speed);
+            });
+        }
+
+    </script>
 </head>
 <body>
-    <div class="water">
-        <div class="water-flow">
-            <div class="water-each"><img src="./waterfall/0.jpg" /></div>
-            <div class="water-each"><img src="./waterfall/4.jpg" /></div>
-        </div>
-        <div class="water-flow">
-            <div class="water-each"><img src="./waterfall/1.jpg" /></div>
-            <div class="water-each"><img src="./waterfall/5.jpg" /></div>
-        </div>
-        <div class="water-flow">
-            <div class="water-each"><img src="./waterfall/2.jpg" /></div>
-            <div class="water-each"><img src="./waterfall/6.jpg" /></div>
-        </div>
-        <div class="water-flow">
-            <div class="water-each"><img src="./waterfall/3.jpg" /></div>
-            <div class="water-each"><img src="./waterfall/7.jpg" /></div>
+    <button class="button" id="layer">登录</button>
+    <div class="layer">
+        <div class="layer-mask"></div>
+        <div class="layer-wrap">
+            <div class="layer-box">
+                <div class="layer-title">欢迎登录</div>
+                <div class="layer-close">×</div>
+                <table class="login">
+                <tr><th>用户名：</th><td><input type="text" /></td></tr>
+                <tr><th>密码：</th><td><input type="password" /></td></tr>
+                <tr><th></th><td><button class="button">登录</button></td></tr>
+                </table>
+            </div>
         </div>
     </div>
+
+    <div class="water"></div>
 </body>
 </html>
