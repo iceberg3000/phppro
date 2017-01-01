@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品信息表单</title>
+    <link rel="stylesheet" href="./css/goods.css" />
+</head>
+<body>
+    <div class="goods">
+        <div class="title">编辑商品信息</div>
+        <table class="table">
+            <tr>
+                <th class="th">商品名称：</th>
+                <td class="td">
+                    <input type="text" name="title" /><span class="tip"></span>
+                    <p class="rule">商品名称长度在3-50个字符之间。</p>
+                </td>
+            </tr>
+            <tr>
+                <th class="th">商品简介：</th>
+                <td class="td">
+                    <textarea name="desc"></textarea><span class="tip"></span>
+                    <p class="rule">商品简介在140个字符以内</p>
+                </td>
+            </tr>
+            <tr>
+                <th class="th">商品编号：</th>
+                <td class="td">
+                    <input type="text" class="num" name="sn" /><span class="tip"></span>
+                    <p class="rule">商品编号不能重复。</p>
+                </td>
+            </tr>
+            <tr>
+                <th class="th">商品价格：</th>
+                <td class="td">
+                    <input type="text" class="num" name="price" /><span class="tip"></span>
+                    <p class="rule">商品价格必须是0.01~99999的数字。</p>
+                </td>
+            </tr>
+            <tr>
+                <th class="th">商品库存：</th>
+                <td class="td">
+                    <input type="text" class="num" name="stock" /><span class="tip"></span>
+                    <p class="rule">商品库存必须是0~99999的数字。</p>
+                </td>
+            </tr>
+        </table>
+        <button>发布</button>
+    </div>
+    <script>
+        checkForm();
+        function checkForm(){
+            var validate = {
+                "title" : checkTitle,
+                "desc" : checkDesc,
+                "sn" : checkSn,
+                "price" : checkPrice,
+                "stock" : checkStock
+            };
+            var objs = [];
+            for(var i in validate){
+                objs[i] = document.getElementsByName(i)[0];
+                objs[i].onblur = validate[i];
+            }
+            function checkTitle(){
+                if(this.value.length>=3 && this.value.length<=50){
+                    success(this,"填写正确");
+                }else{
+                    error(this,"填写错误");
+                }
+            }
+            function checkDesc(){
+                if(this.value.length<=140){
+                    success(this,"填写正确");
+                }else{
+                    error(this,"填写错误");
+                }
+            }
+            function checkSn(){
+                var thisObj = this;
+                var value = thisObj.value;
+                if(value===""){return false;}
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState==4 && xhr.status==200){
+                        //...
+                        var xmlobj = xhr.responseXML;
+                        alert(xmlobj);
+                        if(xmlobj===null){
+                            error(thisObj,"验证失败");
+                        }else{
+                            var flag = xmlobj.getElementsByTagName("flag")[0].firstChild.nodeValue;
+                            var message = xmlobj.getElementsByTagName("message")[0].firstChild.nodeValue;
+                            if(flag==="ok"){
+                                success(thisObj,message);
+                            }else{
+                                error(thisObj,message);
+                            }
+                        }
+                    }
+                };
+                xhr.open("get","goods_1.php?action=checkSn&data="+encodeURIComponent(value));
+                xhr.send();
+                
+            }
+            function checkPrice(){
+                var value = Number(this.value);
+                if(value>=0.01 && value<=99999){
+                    success(this,"填写正确");
+                }else{
+                    error(this,"填写错误");
+                }
+            }
+            function checkStock(){
+                var value = parseInt(this.value);
+                if(value==this.value && value>=0 && value<=99999){
+                    success(this,"填写正确");
+                }else{
+                    error(this,"填写错误");
+                }
+            }
+
+            function success(obj,message){
+                var tipObj = obj.parentNode.getElementsByClassName("tip")[0];
+                tipObj.className = "tip tip-success";
+                tipObj.innerHTML = message;
+            }
+            function error(obj,message){
+                var tipObj = obj.parentNode.getElementsByClassName("tip")[0];
+                tipObj.className = "tip tip-error";
+                tipObj.innerHTML = message;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试ajax</title>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+        }
+        xhr.open("get","./index.php");
+        xhr.send(null);
+    </script>
+</head>
+<body>
+    <h1>测试ajax</h1>
+</body>
+</html>
