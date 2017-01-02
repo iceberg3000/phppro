@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三级联动</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(function(){
+        var url = './goods_3.php';
+        var option = '<option value="0">未选择</option>';
+        //保存jquery对象
+        var $sel1 = $(".sel1");
+        var $sel2 = $(".sel2");
+        var $sel3 = $(".sel3");
+
+        //自动载入第一个下拉菜单
+        ajaxSelect($sel1,"0");
+        function ajaxSelect($select,id){
+            $.getJSON(url,{"pid":id},function(data){
+                $select.html(option);
+                for(var i in data){
+                    $select.append(createOption(data[i].id,data[i].name));
+                }
+            });
+        }
+
+        //自动生成一个<option>元素
+        function createOption(value,text){
+            var $option = $("<option></option>");
+            $option.attr("value",value);
+            $option.text(text);
+            return $option;
+        }
+
+        //一级下拉菜单change事件
+        $sel1.change(function(){
+            var id = $(this).val();
+            if(id==="0"){
+                $sel2.html(option);
+            }else{
+                ajaxSelect($sel2,id);
+            }
+            $sel3.html(option);
+        });
+
+        //二级下拉菜单的change事件
+        $sel2.change(function(){
+            var id = $(this).val();
+            if(id==="0"){
+                $sel3.html(option);
+            }else{
+                ajaxSelect($sel3,id);
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>商品分类</th>
+            <td>
+                <select class="sel1"><option value="0">未选择</option></select>
+                <select class="sel2"><option value="0">未选择</option></select>
+                <select class="sel3"><option value="0">未选择</option></select>
+            </td>
+        </tr>
+        <tr>
+            <th>商品名称：</th>
+            <td>
+                <input type="text" name="title" /><span class="tip"></span>
+                <P>商品名称长度在3~5个字符。</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

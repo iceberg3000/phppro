@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过JSONP跨域请求</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(function(){
+        $("input[name=sn]").blur(function(){
+        //alert('blur');
+        var thisObj = $(this);
+        var value = thisObj.val();
+        //alert(value);
+        if(value===""){return false;}
+        $.ajax({
+                url:"http://www.test.com/goods_4.php",
+                data:{"action":"checkSn","data":value},
+                dataType:"jsonp",
+                jsonp:"callback",
+                success:function(data){
+                    alert(data);
+                    if(data.flag==="ok"){
+                        success(thisObj,data.message);
+                    }else{
+                        error(thisObj,data.message);
+                    }
+                }
+            });
+        });
+        function success(obj,message){
+            var $tip = obj.parent().find(".tip");
+            $tip.attr("class","tip tip-success");
+            $tip.text(message);
+        }
+        function error(obj,message){
+            var $tip = obj.parent().find(".tip");
+            $tip.attr("class","tip tip-error");
+            $tip.text(message);
+        }
+    });
+    
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>商品名称：</th>
+            <td>
+                <input type="text" name="title" /><span class="tip"></span>
+                <p>商品名称长度在3~5个字符。</p>
+            </td>
+        </tr>
+        <tr>
+            <th>商品编号：</th>
+            <td>
+                <input type="text" class="num" name="sn" /><span class="tip"></span>
+                <p>商品编号不能重复。</p>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
